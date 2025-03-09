@@ -2,124 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renegona</title> <!-- nombre del titulo -->
-    <link rel="stylesheet" href="estilos.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-image: url('1.gif'); /* Reemplaza 'tu_gif.gif' con la ruta de tu gif */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            color: white; /* Color de texto blanco */
-        }
-
-        .texto {
-            font-size: 6em; /* Tamaño de la fuente grande */
-            animation: animacionTexto 2s ease-in-out infinite alternate; /* Animación del texto */
-        }
-
-        @keyframes animacionTexto {
-            0% {
-                transform: scale(1); /* Escala inicial */
-            }
-            100% {
-                transform: scale(1.1); /* Escala final */
-            }
-        }
-
-        .comentario {
-            font-size: 1.5em; /* Tamaño de fuente aumentado */
-            color: white; /* Color de texto blanco */
-            margin-top: 20px; /* Espacio superior */
-            margin-bottom: 20px; /* Espacio inferior */
-        }
-
-        .boton {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        #yesBtn {
-            transition: transform 0.5s; /* Transición suave para el botón sí */
-        }
-
-        #noBtn {
-            margin-left: 10px; /* Espacio entre los botones */
-            transition: transform 0.5s, width 0.5s; /* Transición suave para el botón no */
-        }
-
-        #noBtn.grow {
-            transform: scale(1.1); /* Ajusta el tamaño del botón "No" */
-            width: 110px; /* Ajusta el ancho del botón "No" */
-        }
-    </style>
+    <title>Reproductor IPTV</title>
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
 </head>
 <body>
-
-    <div class="texto">
-        Feliz 21 de Pequeña
-    </div>
-
-    <!-- Comentario debajo de "Feliz 21" -->
-    <div class="comentario">
-        <p>¿Crees que me olvidé de hoy, 21? ¡Tu día!</p>
-    </div>
-
-    <div class="boton">
-        <button id="yesBtn" onclick="moveButton()">Sí</button>
-        <button id="noBtn">No</button>
-    </div>
-
-    <script>
-        let buttonClicked = false;
-        let moveLeft = true;
-        let noBtnClicked = false;
-
-        function moveButton() {
-            if (!buttonClicked) {
-                var btn = document.getElementById('yesBtn');
-                var noBtn = document.getElementById('noBtn');
-                noBtn.classList.add('grow'); // Hace que el botón "No" comience a crecer cuando el botón "Sí" se mueva
-                setTimeout(function() {
-                    btn.disabled = false; // Activa el botón después de la animación
-                }, 1500); // 1500 ms = 1.5 segundos, ajusta según la duración de la animación
-                buttonClicked = true;
-            }
-
-            if (!noBtnClicked) {
-                var noBtn = document.getElementById('noBtn');
-                noBtn.classList.add('grow');
-                noBtnClicked = true;
-            }
-
-            var btn = document.getElementById('yesBtn');
-            const step = 20; // Tamaño del paso
-            const offset = moveLeft ? -step : step;
-            const randomX = Math.random() * offset * 10;
-            const randomY = Math.random() * offset * 10;
-            btn.style.setProperty('transform', `translate(${randomX}px, ${randomY}px)`);
-
-            moveLeft = !moveLeft; // Alternar dirección
-        }
-
-        const noBtn = document.querySelector('#noBtn');
-
-        noBtn.addEventListener('click', function () {
-            alert(' Bueno, pequeña, solo feliz día de la primavera. Sabes que eres especial para mí, rara, sí, jodida igual, pero eres mi pataza y siempre contarás conmigo. Ya pronto seremos colegas. atte:jhon  .');
-        });
-    </script>
-
+    <video id="miVideo" class="video-js vjs-default-skin" controls autoplay width="640" height="360">
+        <source src="http://181.78.105.146:8800/play/a070" type="application/x-mpegURL">
+    </video>
+    <script src="https://vjs.zencdn.net/7.10.2/video.js"></script>
 </body>
 </html>
+
